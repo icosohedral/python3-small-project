@@ -1,6 +1,6 @@
 #!python3
 
-import os, re, requests, bs4, time
+import os, requests, bs4, time
 import RPi.GPIO as GPIO#For LED
 
 #Domain check def
@@ -95,7 +95,7 @@ def redLED_on():
         LEDcount += 2
 
         
-urlInput = 'xunxian2.com'
+urlInput = 'xunxian2.com' #example domain
 checkNum = domainCheck(urlInput)
 
 if checkNum == 0:
