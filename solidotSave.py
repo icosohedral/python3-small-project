@@ -22,9 +22,6 @@ if 'solidot.txt' not in ''.join(os.listdir(pwd)):
         post = ' '.join(elems[i].getText().split()) #single post string
         solidotFile.write(title + '\n\n' + post + '\n ----------\n')
         print('New writing in ' + str(i+1) + 'th post...')
-    solidotFile.close()
-    print('Done!  ', end='')
-    print('Time is: ' + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
 else:
     solidotFile = open(pwd+'solidot.txt', 'r')
     solidotText = solidotFile.read()
@@ -36,10 +33,9 @@ else:
             post = ' '.join(elems[i].getText().split()) #single post string
             solidotFile.write(title + '\n\n' + post + '\n ----------\n')
             print('Add in ' + str(i+1) + 'th post...')            
-        else:
-            pass
-    solidotFile.close()
-    print('Done!  ', end='')
-    print('Time is: ' + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+
+solidotFile.close()
+print('Done!  ', end='')
+print('Time is: ' + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
     
 
