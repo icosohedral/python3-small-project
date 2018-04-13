@@ -1,6 +1,6 @@
 #!python3
 
-import os, re, requests, time, bs4
+import re, requests, bs4
 
 #bing search
 def linkCollect(searchType,Name):#base on cn.bing, searchType = 读书/音乐/电影
@@ -12,7 +12,7 @@ def linkCollect(searchType,Name):#base on cn.bing, searchType = 读书/音乐/�
     linkSoup = bs4.BeautifulSoup(res.text, 'html.parser')
     elems = linkSoup.select('.b_caption')
     
-    url = elems[0].cite.getText()#get res in target website
+    url = elems[0].cite.getText()#get res from target website
     res = requests.get(url)
     res.raise_for_status()
     soup = bs4.BeautifulSoup(res.text, 'html.parser')
@@ -26,7 +26,7 @@ def bookCollect(Name):
     #get author
     author = soup.select('span.pl + a[href]')[0].getText()#[0]author, [1]translator
     #get rate
-    rate = soup.select('strong.rating_num')[0].getText().strip()#strip() del space
+    rate = soup.select('strong.rating_num')[0].getText().strip()#strip() for remove space
     #get intro
     intro = soup.select('div.intro')[0].getText()
     #return
@@ -41,9 +41,9 @@ def movieCollect(Name):
     #get director
     directorList = soup.select('a[rel="v:directedBy"]')
     director = ''
-    for i in range(len(directorList)):#more than one directors
+    for i in range(len(directorList)):#if there are more than one director
         director = director + directorList[i].getText() + '/'
-    director = director[:-1]
+    director = director[:-1]#remove the last '/'
     #get rate
     rate = float(soup.select('strong[property="v:average"]')[0].getText())
     #get type
@@ -51,7 +51,7 @@ def movieCollect(Name):
     movieType = ''
     for i in range(len(movieTypeList)):
         movieType = movieType + movieTypeList[i].getText() + '/'
-    movieType = movieType[:-1]#remove '，' in the end
+    movieType = movieType[:-1]
     #get intro
     intro = ''.join(soup.select('span[property="v:summary"]')[0].getText().split())
     #return
@@ -132,5 +132,5 @@ def collect():
         else:
             searchType = input('What type you wanna search(读书/电影/音乐): ')
                                 
-
+#let's run this script now
 collect()
