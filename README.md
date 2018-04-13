@@ -8,3 +8,6 @@ some simple projects on raspberry pi with python
 
 #solidotSave.py
 <br>搜集solidot.org上面的文章，并且往存档末尾添加新搜集到的文章。丢在树莓派上定时运行。
+
+#doubanSearch.py
+<br>一个用于搜索豆瓣书影音的小脚本，基于cn.bing搜索条目链接（豆瓣自己的搜索引擎好像抓不到-。-），再进入链接获取具体信息。
