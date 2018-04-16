@@ -58,7 +58,7 @@ def whiteLED_on():
         time.sleep(1)
         LEDcount += 2
         
-#checkNum == 1, '域名可注册！', red green on, GPIO18(12)&GND(14)
+#checkNum == 1, '域名可注册！', green led on, GPIO18(12)&GND(14)
 def greenLED_on():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(18, GPIO.OUT)
@@ -95,7 +95,7 @@ def redLED_on():
         LEDcount += 2
 
         
-urlInput = 'xunxian2.com' #example domain
+urlInput = 'douban.com' #example domain
 checkNum = domainCheck(urlInput)
 
 if checkNum == 0:
