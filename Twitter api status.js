@@ -66,7 +66,6 @@ _json={
 'favorited': False, 
 'retweeted': False, 
 'lang': 'en'
-}
-)
+})
 
  
