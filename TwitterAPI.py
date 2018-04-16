@@ -9,7 +9,6 @@ non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 #socks proxy
 import socket
 import socks
-import requests
 socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 1080)
 socket.socket = socks.socksocket
 
