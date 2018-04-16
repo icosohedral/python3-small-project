@@ -1,6 +1,6 @@
 #!python3
 
-import re, tweepy
+import tweepy
 
 #x.translate(non_bmp_map) for decode
 import sys 
