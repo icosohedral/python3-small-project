@@ -1,6 +1,6 @@
 #!python3
 
-import os, requests, bs4, time
+import requests, bs4, time
 import RPi.GPIO as GPIO#For LED
 
 #Domain check def
