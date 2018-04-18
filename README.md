@@ -12,3 +12,9 @@ some simple projects on raspberry pi with python
 #doubanSearch.py
 <br>一个用于搜索豆瓣书影音的小脚本。
 <br>基于cn.bing搜索条目链接（豆瓣自己的搜索引擎好像抓不到-。-），再进入链接获取具体信息。
+
+#TwitterAPI.py
+<br>t站真的是超良心，api简单易用，顺手记录几个简单的应用。用的是tweepy模块，文档在此：http://docs.tweepy.org/en/v3.5.0/api.html 。由于特殊需求，需要socks代理。然后到Twitter开发者网站上申请一个app，得到 consumer_key, consumer_secret, access_token, access_token_secret。设置好api对象（ api = tweepy.API(auth) ）后，就可以按照tweepy文档实现自己的需求了。
+
+#getWeather.py 
+<br>获取各地天气，基于新浪天气网页。首先利用 http://open.weather.sina.com.cn/api/location/getSuggestion/[city name] 获得目标城市的链接，要是有多个匹配的话就取第一个，之后进入该链接获取各种天气数据。其实是可以获得未来10天内的天气和气温数据的，感觉太麻烦了，我就get了当前的和第二天的数据。还有，国内外的城市名和时间类名不太一样，需要不同处理（国内时间我直接用time()模块获取了~）。
