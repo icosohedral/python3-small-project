@@ -47,6 +47,7 @@ def removeRepeat(fileName):#remove repeat posts
     file.close()
     file = open('TBpost_' + fileName + '.txt', 'w', encoding='utf-8')
     file.write('\n************\n'.join(fileStrListNR))
+    file.close()
     print('Remove Repeats Successful!')
     
 name = input('User name is: ')
