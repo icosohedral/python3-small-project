@@ -38,7 +38,7 @@ def getPost(userName):
     print('\nRemoving repeat...')
     removeRepeat(userName)
 
-def removeRepeat(fileName):#remove  repeat posts
+def removeRepeat(fileName):#remove repeat posts
     file = open('TBpost_' + fileName + '.txt', 'r', encoding='utf-8')
     fileStr = file.read()
     fileStrListR = fileStr.split('\n************\n')
