@@ -1,6 +1,6 @@
 #!python3
 
-import requests, json, bs4, time, pprint
+import requests, json, bs4, time
 
 def citySearch(city):
     searchUrl = 'http://open.weather.sina.com.cn/api/location/getSuggestion/' + city
@@ -17,15 +17,12 @@ def getWeather(city):
     res.raise_for_status()
     res.encoding='utf-8'
     soup = bs4.BeautifulSoup(res.text, 'html.parser')
-
     try:
         cityName = soup.select('[class=slider_ct_enname]')[0].getText()
         localTime = soup.select('[class=slider_ct_info]')[1].getText()[16:]
     except:
         cityName = soup.select('[class=slider_ct_name]')[0].getText()
-        localTime = time.strftime('%m-%d %H:%M:%S', time.localtime())
-    
-    
+        localTime = time.strftime('%m-%d %H:%M:%S', time.localtime())  
     tempList = soup.select('[class=wt_fc_c0_i_temp]')
     tempNow = tempList[0].getText()
     if '/' in tempNow:
