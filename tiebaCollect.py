@@ -1,6 +1,6 @@
 #!python3
 
-import requests, bs4, time
+import requests, bs4, time, os
 
 def getPost(userName):  
     un = str(userName.encode('GBK'))[2:-1].replace(r'\x', '%')#decode Chinese to GBK str
@@ -32,23 +32,37 @@ def getPost(userName):
         else:#if len(postList)==0, we know that all posts have been collected, so break this loop
             break
         print('Page ' + str(page) + ' done.')
-        time.sleep(0.8)
+        time.sleep(3)#sleep a few second seems help to reduce repeats
         page += 1
     print('All posts have been collected.')
-    print('\nRemoving repeat...')
-    removeRepeat(userName)
+    if userName in ''.join(os.listdir('.')):
+        removeRepeat(userName)
+    else:
+        print('No File Need Remove Repeat.')
 
-def removeRepeat(fileName):#remove repeat posts
-    file = open('TBpost_' + fileName + '.txt', 'r', encoding='utf-8')
+def removeRepeat(userName):#remove repeat posts
+    print('\nRemoving repeat...')
+    fileName = 'TBpost_' + userName + '.txt'
+    file = open(fileName, 'r', encoding='utf-8')#should add encoding='utf-8'
     fileStr = file.read()
     fileStrListR = fileStr.split('\n************\n')
     fileStrListNR = list(set(fileStrListR))
     fileStrListNR.sort(key=fileStrListR.index)
     file.close()
-    file = open('TBpost_' + fileName + '.txt', 'w', encoding='utf-8')
+    file = open(fileName, 'w', encoding='utf-8')
     file.write('\n************\n'.join(fileStrListNR))
     file.close()
-    print('Remove Repeats Successful!')
-    
-name = input('User name is: ')
-getPost(name)
+    lenR = str(len(fileStrListR) -len(fileStrListNR))
+    print('Remove Repeats Successful!' + 'Totally Remove ' + lenR + ' Repeats')
+
+while True:
+    print('******')
+    name = input('User name is: ')
+    try:
+        getPost(name)
+    except:#if some error happend in getPost(), still try to remove repeats
+        print('It Seems Something Wrong.')
+        try:
+            removeRepeat(name)
+        except:
+            pass
